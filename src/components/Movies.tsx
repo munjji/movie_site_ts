@@ -1,7 +1,7 @@
 // Movies.tsx
 import React from "react";
 import Movie from "./Movie";
-import { MOVIES } from "../mocks/movies"; // MOVIES 데이터를 가져옵니다
+import { MOVIES } from "../movies"; // MOVIES 데이터를 가져옵니다
 
 const Movies: React.FC = () => {
   return (
