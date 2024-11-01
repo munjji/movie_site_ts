@@ -2,9 +2,28 @@ import { Link } from "react-router-dom";
 
 const Navbar: React.FC = () => {
   return (
-    <nav>
-      <Link to={"/"}>홈 페이지로 이동</Link>
-      <Link to="/movies">영화 목록 페이지로 이동</Link>
+    <nav className="p-4 flex flex-row justify-between bg-slate-900">
+      <Link to="/">
+        <p className="text-red-500 font-bold">MUNJJI</p>
+      </Link>
+      <div className="flex flex-row gap-1">
+        <Link to="/login">
+          <button
+            type="button"
+            className="w-[100px] h-[40px] text-center text-white bg-black rounded-xl"
+          >
+            로그인
+          </button>
+        </Link>
+        <Link to="/signup">
+          <button
+            type="button"
+            className="w-[100px] h-[40px] text-center text-white bg-red-500 rounded-xl"
+          >
+            회원가입
+          </button>
+        </Link>
+      </div>
     </nav>
   );
 };

@@ -20,13 +20,6 @@ interface Movie {
   vote_count: number;
 }
 
-interface MoviesProps {
-  page: number;
-  results: Movie[];
-  total_pages: number;
-  total_results: number;
-}
-
 const Movies: React.FC = () => {
   const [movies, setMovies] = useState<Movie[]>([]);
 
@@ -46,7 +39,7 @@ const Movies: React.FC = () => {
   }, []);
 
   return (
-    <div className="flex flex-row flex-wrap justify-center gap-4">
+    <div className="flex flex-row flex-wrap justify-center gap-4 pt-6">
       {movies?.map((movie) => (
         <Movie key={movie.id} img={movie.poster_path} /> // Movie 컴포넌트에 poster_path를 전달
       ))}
