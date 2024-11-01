@@ -2,7 +2,7 @@ import React from "react";
 
 const Movies: React.FC = () => {
   return (
-    <div className="">
+    <div>
       <Movies />
     </div>
   );

@@ -6,6 +6,7 @@ import NotFound from "./pages/NotFound";
 import RootLayout from "./layout/root-layout";
 import Login from "./pages/Login";
 import SignUp from "./pages/SignUp";
+import MovieCategory from "./pages/MovieCategory";
 
 const router = createBrowserRouter([
   {
@@ -18,9 +19,8 @@ const router = createBrowserRouter([
         element: <HomePage />,
       },
       {
-        // /:을 활용해서, 동적으로 바뀌는 부분의 이름을 정의해줍시다.
-        path: "movies/:movieId",
-        element: <Movies />,
+        path: "movies",
+        element: <MovieCategory />,
       },
       {
         path: "login",
@@ -36,9 +36,9 @@ const router = createBrowserRouter([
 
 function App() {
   return (
-    <>
+    <div className="bg-black">
       <RouterProvider router={router} />
-    </>
+    </div>
   );
 }
 
