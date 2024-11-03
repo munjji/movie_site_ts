@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 const Navbar: React.FC = () => {
   return (
     <nav className="p-4 flex flex-row justify-between items-cente">
-      <Link to="/" className="bg-slate-900">
+      <Link to="/">
         <p className="text-red-500 font-bold text-lg">MUNJJI</p>
       </Link>
       <div className="flex flex-row gap-1">

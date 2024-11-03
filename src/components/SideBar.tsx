@@ -6,7 +6,7 @@ import { MdMovie } from "react-icons/md";
 const SideBar: React.FC = () => {
   return (
     <div className="w-[350px] h-screen flex flex-col text-white gap-2 pl-8">
-      <Link to="/serch">
+      <Link to="/search">
         <div className="flex flex-row gap-1 h-[30px] items-center">
           <FaSearch />
           찾기
