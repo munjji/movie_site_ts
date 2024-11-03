@@ -1,5 +1,7 @@
 import React from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
+import useCreditsFetch from "../hooks/useCreditsFetch";
+import Credit from "../components/Credit";
 
 interface LocationState {
   title?: string;
@@ -11,6 +13,11 @@ interface LocationState {
 }
 
 const MovieDetail: React.FC = () => {
+  const { movieId } = useParams();
+  const { credit, isLoading } = useCreditsFetch(
+    `/movie/${movieId}/credits?language=ko-kr`
+  );
+
   const location = useLocation();
   const {
     title,
@@ -24,6 +31,10 @@ const MovieDetail: React.FC = () => {
     backgroundImage: `url('${defaultImg}${img}')`,
     opacity: 0.7,
   };
+
+  if (isLoading) {
+    return <div className="text-white">로딩 중입니다..</div>;
+  }
 
   return (
     <div>
@@ -40,6 +51,15 @@ const MovieDetail: React.FC = () => {
       </div>
       <div className="text-3xl font-extrabold">
         <p className="text-white">감독/출연</p>
+        <div className="flex flex-row flex-wrap justify gap-14 p-4">
+          {credit.map((credit) => (
+            <Credit
+              img={credit.profile_path}
+              name={credit.name}
+              role={credit.character}
+            />
+          ))}
+        </div>
       </div>
     </div>
   );
