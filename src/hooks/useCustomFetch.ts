@@ -29,7 +29,6 @@ const useCustomFetch = (url: string) => {
       try {
         const response = await axiosInstance.get(url);
         setMovies(response.data.results);
-        console.log(response.data.results);
       } catch (error) {
         setIsError(true);
         console.log(error);

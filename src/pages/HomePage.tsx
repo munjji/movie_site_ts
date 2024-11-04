@@ -3,7 +3,7 @@ import Movies from "../components/Movies";
 
 const HomePage: React.FC = () => {
   return (
-    <div>
+    <div className="w-[1400px] pb-8">
       <Movies />
     </div>
   );

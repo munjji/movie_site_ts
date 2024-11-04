@@ -13,7 +13,7 @@ const Movies: React.FC = () => {
   }
 
   return (
-    <div className="flex flex-row flex-wrap justify-center gap-4 pt-6">
+    <div className="flex flex-row flex-wrap gap-4 pt-6">
       {movies?.map((movie) => (
         <Movie
           key={movie.id}
