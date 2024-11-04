@@ -29,7 +29,6 @@ const MovieDetail: React.FC = () => {
   }: LocationState = location.state || {};
   const bgStyle = {
     backgroundImage: `url('${defaultImg}${img}')`,
-    opacity: 0.7,
   };
 
   if (isLoading) {
