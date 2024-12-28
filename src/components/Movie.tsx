@@ -35,6 +35,7 @@ const Movie: React.FC<MovieProps> = ({
           },
         })
       }
+      className="hover:cursor-pointer"
     >
       <div className="relative w-[150px] h-[230px] group mb-2">
         <img

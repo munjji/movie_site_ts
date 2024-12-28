@@ -11,6 +11,7 @@ const Login: React.FC = () => {
   const handlePressLogin = () => {
     console.log(login.values.email, login.values.password);
   };
+
   return (
     <div className="w-[1100px] flex flex-col justify-center items-center gap-y-4">
       <p className="text-white font-extrabold text-3xl mb-7">로그인</p>

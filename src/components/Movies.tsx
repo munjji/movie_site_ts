@@ -3,9 +3,9 @@ import React from "react";
 import Movie from "./Movie";
 import useCustomFetch from "../hooks/useCustomFetch";
 
-const Movies: React.FC = () => {
+const Movies: React.FC<{ endpoint?: string }> = ({ endpoint }) => {
   const { movies, isLoading } = useCustomFetch(
-    `/movie/upcoming?language=ko-kr`
+    `/movie/${endpoint}?language=ko-kr`
   );
 
   if (isLoading) {
