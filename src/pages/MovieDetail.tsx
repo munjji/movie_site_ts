@@ -1,5 +1,5 @@
 import React from "react";
-import { useLocation, useParams } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import useCreditsFetch from "../hooks/useCreditsFetch";
 import Credit from "../components/Credit";
 
@@ -12,8 +12,7 @@ interface LocationState {
   defaultImg?: string;
 }
 
-const MovieDetail: React.FC = () => {
-  const { movieId } = useParams();
+const MovieDetail: React.FC<{ movieId: string }> = ({ movieId }) => {
   const { credit, isLoading } = useCreditsFetch(
     `/movie/${movieId}/credits?language=ko-kr`
   );
@@ -56,6 +55,7 @@ const MovieDetail: React.FC = () => {
               img={credit.profile_path}
               name={credit.name}
               role={credit.character}
+              key={credit.id}
             />
           ))}
         </div>

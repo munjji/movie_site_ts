@@ -6,8 +6,6 @@ import RootLayout from "./layout/root-layout";
 import Login from "./pages/Login";
 import SignUp from "./pages/SignUp";
 import MovieCategory from "./pages/MovieCategory";
-import MovieDetail from "./pages/MovieDetail";
-import Movies from "./components/Movies";
 
 const router = createBrowserRouter([
   {
@@ -17,21 +15,25 @@ const router = createBrowserRouter([
     children: [
       {
         index: true,
-        element: <HomePage />, // 기본 홈 페이지
+        element: <HomePage />,
       },
       {
         path: "movies",
-        element: <MovieCategory />, // 영화 카테고리 페이지
+        element: <MovieCategory />,
         children: [
           {
-            path: ":category", // 카테고리를 동적 경로로 처리
-            element: <Movies />,
+            index: true, // 기본 카테고리 목록 경로
+            element: <MovieCategory />,
+          },
+          {
+            path: ":category", // 카테고리 경로
+            element: <MovieCategory />,
+          },
+          {
+            path: ":movieId", // 영화 상세 경로
+            element: <MovieCategory />,
           },
         ],
-      },
-      {
-        path: "movies/:movieId",
-        element: <MovieDetail />, // 개별 영화 상세 페이지
       },
       {
         path: "login",
