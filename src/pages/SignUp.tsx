@@ -1,7 +1,76 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import useForm from "../hooks/use-form";
+import { validateSignup } from "../utils/validate";
 
 const SignUp: React.FC = () => {
-  return <div className="text-white">회원가입 페이지</div>;
+  const signup = useForm({
+    initialValue: { email: "", password: "", repassword: "" },
+    validate: validateSignup,
+  });
+  const [isValid, setIsValid] = useState(false);
+
+  useEffect(() => {
+    setIsValid(
+      !signup.errors.email &&
+        !signup.errors.password &&
+        !signup.errors.repassword &&
+        signup.values.email !== "" &&
+        signup.values.password !== "" &&
+        signup.values.repassword !== ""
+    );
+  }, [signup.errors, signup.values]);
+
+  const handlePressSignup = () => {
+    if (isValid) {
+      console.log(signup.values.email, signup.values.password);
+    }
+  };
+
+  return (
+    <div className="w-[1100px] flex flex-col justify-center items-center gap-y-4">
+      <p className="text-white font-extrabold text-3xl mb-7">회원가입</p>
+      <input
+        type={"email"}
+        placeholder="이메일을 입력해주세요!"
+        {...signup.getTextInputProps("email")}
+        className="w-[350px] p-3 text-gray rounded-md outline-none"
+      />
+      {signup.touched.email && signup.errors.email && (
+        <p className="text-start text-rose-700 font-[12px]">
+          {signup.errors.email}
+        </p>
+      )}
+      <input
+        type={"password"}
+        {...signup.getTextInputProps("password")}
+        placeholder="비밀번호를 입력해주세요!"
+        className="w-[350px] p-3 text-gray rounded-md outline-none"
+      />
+      {signup.touched.password && signup.errors.password && (
+        <p className="text-rose-700 font-[12px]">{signup.errors.password}</p>
+      )}
+      <input
+        type={"password"}
+        {...signup.getTextInputProps("repassword")}
+        placeholder="비밀번호를 다시 입력해주세요!"
+        className="w-[350px] p-3 text-gray rounded-md outline-none"
+      />
+      {signup.touched.repassword && signup.errors.repassword && (
+        <p className="text-rose-700 font-[12px]">{signup.errors.repassword}</p>
+      )}
+      <input
+        onClick={handlePressSignup}
+        type={"submit"}
+        value={"회원가입"}
+        disabled={!isValid}
+        className={`text-white w-[350px] p-3 rounded-md ${
+          isValid
+            ? " bg-red-500 cursor-pointer"
+            : "bg-gray-400 cursor-not-allowed"
+        }`}
+      />
+    </div>
+  );
 };
 
 export default SignUp;

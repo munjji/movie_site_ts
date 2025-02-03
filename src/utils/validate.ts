@@ -7,31 +7,56 @@ interface LoginValues {
 }
 
 interface ValidationErrors {
-  email: string;
-  password: string;
+  email?: string;
+  password?: string;
 }
 
-function validateUser(values: LoginValues): ValidationErrors {
-  const errors: ValidationErrors = {
-    email: "",
-    password: "",
-  };
+interface SignupValues {
+  email: string;
+  password: string;
+  repassword: string;
+}
 
-  // 이메일 유효성 검사
+interface ValidationSignupErrors {
+  email?: string;
+  password?: string;
+  repassword?: string;
+}
+
+// ✅ 로그인 유효성 검사 함수
+function validateLogin(values: LoginValues): ValidationErrors {
+  const errors: ValidationErrors = {};
+
   if (!emailPattern.test(values.email)) {
-    errors.email = "올바른 이메일 형식이 아닙니다. 다시 확인해 주세요!";
+    errors.email = "올바른 이메일 형식이 아닙니다.";
   }
 
-  // 비밀번호 유효성 검사
   if (values.password.length < 8 || values.password.length > 16) {
-    errors.password = "비밀번호는 8 ~ 16자 사이로 입력해 주세요!";
+    errors.password = "비밀번호는 8~16자 사이로 입력해주세요.";
   }
 
   return errors;
 }
 
-function validateLogin(values: LoginValues): ValidationErrors {
-  return validateUser(values);
+// ✅ 회원가입 유효성 검사 함수 (비밀번호 확인 포함)
+function validateSignup(values: SignupValues): ValidationSignupErrors {
+  const errors: ValidationSignupErrors = {};
+
+  if (!emailPattern.test(values.email)) {
+    errors.email = "이메일을 반드시 입력해주세요.";
+  }
+
+  if (values.password.length < 8 || values.password.length > 16) {
+    errors.password = "비밀번호는 8~16자 사이로 입력해주세요.";
+  }
+
+  if (!values.repassword) {
+    errors.repassword = "비밀번호 확인을 입력해주세요.";
+  } else if (values.repassword !== values.password) {
+    errors.repassword = "비밀번호가 일치하지 않습니다.";
+  }
+
+  return errors;
 }
 
-export { validateLogin };
+export { validateLogin, validateSignup };
