@@ -10,6 +10,10 @@ const useForm = <T>({ initialValue, validate }: UseFormProps<T>) => {
   const [touched, setTouched] = useState<Record<string, boolean>>({});
   const [errors, setErrors] = useState<Record<string, string>>({});
 
+  useEffect(() => {
+    setErrors(validate(values));
+  }, [values]);
+
   const handleChangeInput = (name: keyof T, value: string) => {
     setValues((prevValues) => ({
       ...prevValues,
@@ -33,12 +37,6 @@ const useForm = <T>({ initialValue, validate }: UseFormProps<T>) => {
 
     return { value, onChange, onBlur };
   };
-
-  useEffect(() => {
-    const newErrors = validate(values);
-    console.log(newErrors);
-    setErrors(newErrors);
-  }, [validate, values]);
 
   return { values, errors, touched, getTextInputProps };
 };

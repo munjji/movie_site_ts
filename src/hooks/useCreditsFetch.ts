@@ -13,6 +13,7 @@ const useCreditsFetch = (url: string) => {
       try {
         const response = await axiosInstance.get(url);
         setCredit(response.data.cast);
+        console.log(response.data);
       } catch (error) {
         setIsError(true);
         console.log(error);

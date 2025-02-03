@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import useForm from "../hooks/use-form";
 import { validateLogin } from "../utils/validate";
 
@@ -7,9 +7,21 @@ const Login: React.FC = () => {
     initialValue: { email: "", password: "" },
     validate: validateLogin,
   });
+  const [isValid, setIsValid] = useState(false);
+
+  useEffect(() => {
+    setIsValid(
+      !login.errors.email &&
+        !login.errors.password &&
+        login.values.email !== "" &&
+        login.values.password !== ""
+    );
+  }, [login.errors, login.values]);
 
   const handlePressLogin = () => {
-    console.log(login.values.email, login.values.password);
+    if (isValid) {
+      console.log(login.values.email, login.values.password);
+    }
   };
 
   return (
@@ -37,7 +49,12 @@ const Login: React.FC = () => {
         onClick={handlePressLogin}
         type={"submit"}
         value={"로그인"}
-        className="text-white w-[350px] p-3 bg-red-500 rounded-md"
+        disabled={!isValid}
+        className={`text-white w-[350px] p-3 rounded-md ${
+          isValid
+            ? " bg-red-500 cursor-pointer"
+            : "bg-gray-400 cursor-not-allowed"
+        }`}
       />
     </div>
   );
