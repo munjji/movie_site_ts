@@ -1,28 +1,31 @@
 import React, { useEffect, useState } from "react";
 import useForm from "../hooks/use-form";
 import { validateSignup } from "../utils/validate";
+import useAuth from "../hooks/auth/useAuth";
 
 const SignUp: React.FC = () => {
   const signup = useForm({
-    initialValue: { email: "", password: "", repassword: "" },
+    initialValue: { email: "", password: "", passwordCheck: "" },
     validate: validateSignup,
   });
+  const { registerUser } = useAuth();
   const [isValid, setIsValid] = useState(false);
 
   useEffect(() => {
     setIsValid(
       !signup.errors.email &&
         !signup.errors.password &&
-        !signup.errors.repassword &&
+        !signup.errors.passwordCheck &&
         signup.values.email !== "" &&
         signup.values.password !== "" &&
-        signup.values.repassword !== ""
+        signup.values.passwordCheck !== ""
     );
   }, [signup.errors, signup.values]);
 
   const handlePressSignup = () => {
     if (isValid) {
-      console.log(signup.values.email, signup.values.password);
+      console.log("회원가입 요청:", signup.values);
+      registerUser(signup.values);
     }
   };
 
@@ -51,7 +54,7 @@ const SignUp: React.FC = () => {
       )}
       <input
         type={"password"}
-        {...signup.getTextInputProps("repassword")}
+        {...signup.getTextInputProps("passwordCheck")}
         placeholder="비밀번호를 다시 입력해주세요!"
         className="w-[350px] p-3 text-gray rounded-md outline-none"
       />

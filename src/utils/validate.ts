@@ -17,11 +17,11 @@ const signupSchema = z
   .object({
     email: emailSchema,
     password: passwordSchema,
-    repassword: z.string(),
+    passwordCheck: z.string(),
   })
-  .refine((data) => data.password === data.repassword, {
+  .refine((data) => data.password === data.passwordCheck, {
     message: "비밀번호가 일치하지 않습니다.",
-    path: ["repassword"],
+    path: ["passwordCheck"],
   });
 
 // 로그인, 회원가입 values 정의
@@ -36,7 +36,7 @@ interface ValidationErrors {
 interface ValidationSignupErrors {
   email?: string;
   password?: string;
-  repassword?: string;
+  passwordCheck?: string;
 }
 
 // 로그인 유효성 검사 함수
@@ -62,7 +62,7 @@ function validateSignup(values: SignupValues): ValidationSignupErrors {
   return {
     email: errors.email?.[0],
     password: errors.password?.[0],
-    repassword: errors.repassword?.[0],
+    passwordCheck: errors.passwordCheck?.[0],
   };
 }
 
