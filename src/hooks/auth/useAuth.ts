@@ -8,9 +8,11 @@ import type {
   TTokenValues,
 } from "../../types/auth/auth";
 import type { AxiosError } from "axios";
+import { useAuthStore } from "../../store/useAuthStore";
 
 const useAuth = () => {
   const navigate = useNavigate();
+  const { login: setLoginState } = useAuthStore();
 
   // ✅ 회원가입 Mutation
   const { mutate: registerUser, isError: isRegisterError } = useMutation<
@@ -37,6 +39,10 @@ const useAuth = () => {
     mutationFn: login,
     onSuccess: (data) => {
       console.log("✅ 로그인 성공:", data);
+
+      const email = localStorage.getItem("email") || "";
+      setLoginState(email);
+
       localStorage.setItem("accessToken", data.accessToken);
       localStorage.setItem("refreshToken", data.refreshToken);
       navigate("/");

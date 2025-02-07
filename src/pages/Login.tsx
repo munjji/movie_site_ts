@@ -26,6 +26,7 @@ const Login: React.FC = () => {
     }
 
     loginUser({ email: login.values.email, password: login.values.password });
+    localStorage.setItem("email", login.values.email);
   };
 
   return (
