@@ -2,7 +2,7 @@ import { useNavigate } from "react-router-dom";
 import { useMutation } from "@tanstack/react-query";
 import { signup } from "../../apis/auth/auth";
 import type { TSignupResponse, TSignupValues } from "../../types/auth/auth";
-import type { AxiosError } from "axios"; // ✅ AxiosError 타입 추가
+import type { AxiosError } from "axios";
 
 const useAuth = () => {
   const navigate = useNavigate();
@@ -15,10 +15,10 @@ const useAuth = () => {
     mutationFn: signup,
     onSuccess: (data) => {
       console.log("✅ 회원가입 성공:", data);
-      navigate("/"); // ✅ 회원가입 성공 후 로그인 페이지로 이동
+      navigate("/");
     },
-    onError: () => {
-      console.error("❌ 회원가입 실패");
+    onError: (error) => {
+      console.error("❌ 회원가입 실패", error.response?.data);
     },
   });
 
