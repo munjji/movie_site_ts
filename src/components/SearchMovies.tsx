@@ -2,10 +2,10 @@ import React from "react";
 import Movie from "./Movie";
 import useCustomFetch from "../hooks/useCustomFetch";
 
-const Movies: React.FC<{ endpoint?: string }> = ({ endpoint }) => {
-  const { movies, isLoading } = useCustomFetch(
-    `/movie/${endpoint}?language=ko-kr`
-  );
+const SearchMovies: React.FC<{ searchValue: string }> = ({ searchValue }) => {
+  const url = `/search/movie?query=${searchValue}&include_adult=false&language=ko-kr&page=1`;
+
+  const { movies, isLoading } = useCustomFetch(url);
 
   if (isLoading) {
     return <div className="text-white">로딩 중입니다..</div>;
@@ -28,4 +28,4 @@ const Movies: React.FC<{ endpoint?: string }> = ({ endpoint }) => {
   );
 };
 
-export default Movies;
+export default SearchMovies;

@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 import SearchBar from "../components/SearchBar";
 import { useNavigate, useSearchParams } from "react-router-dom";
-import useCustomFetch from "../hooks/useCustomFetch";
-import Movie from "../components/Movie";
+import SearchMovies from "../components/SearchMovies";
 
 const Search: React.FC = () => {
   const [searchValue, setSearchValue] = useState<string>("");
@@ -27,10 +26,6 @@ const Search: React.FC = () => {
     }
   };
 
-  const url = `/search/movie?query=${searchValue}&include_adult=false&language=ko-kr&page=1`;
-
-  const { movies } = useCustomFetch(url);
-
   return (
     <div className="w-full flex flex-col pt-5 px-5">
       <SearchBar
@@ -39,19 +34,7 @@ const Search: React.FC = () => {
         onClick={handleSearchMovie}
         onKeyDown={handleSearchMovieWithKeyboard}
       />
-      <div className="flex flex-row flex-wrap gap-4 pt-6">
-        {movies?.map((movie) => (
-          <Movie
-            key={movie.id}
-            img={movie.poster_path}
-            title={movie.title}
-            date={movie.release_date}
-            movieId={movie.id}
-            vote={movie.vote_average}
-            overview={movie.overview}
-          />
-        ))}
-      </div>
+      <SearchMovies searchValue={searchValue} />
     </div>
   );
 };
