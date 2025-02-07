@@ -14,7 +14,7 @@ const SearchBar: React.FC<SearchBarProps> = ({
   onKeyDown,
 }) => {
   return (
-    <>
+    <div className="flex">
       <input
         type="text"
         value={searchValue}
@@ -30,7 +30,7 @@ const SearchBar: React.FC<SearchBarProps> = ({
       >
         검색
       </button>
-    </>
+    </div>
   );
 };
 
