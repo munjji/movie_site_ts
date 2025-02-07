@@ -52,12 +52,12 @@ const useAuth = () => {
     },
   });
 
-  // 로그아웃
   const logoutUser = () => {
     setLogoutState();
     localStorage.removeItem("accessToken");
     localStorage.removeItem("refreshToken");
     localStorage.removeItem("email");
+
     navigate("/login");
   };
 
