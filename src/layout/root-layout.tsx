@@ -6,7 +6,7 @@ const RootLayout: React.FC = () => {
   return (
     <>
       <Navbar />
-      <div className="flex flex-row">
+      <div className="flex flex-row gap-10">
         <SideBar />
         <Outlet />
       </div>

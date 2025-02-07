@@ -30,7 +30,7 @@ const SignUp: React.FC = () => {
   };
 
   return (
-    <div className="w-[1100px] flex flex-col justify-center items-center gap-y-4">
+    <div className="w-full flex flex-col justify-center items-center gap-y-4">
       <p className="text-white font-extrabold text-3xl mb-7">회원가입</p>
       <input
         type={"email"}

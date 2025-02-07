@@ -6,6 +6,7 @@ import RootLayout from "./layout/root-layout";
 import Login from "./pages/Login";
 import SignUp from "./pages/SignUp";
 import MovieCategory from "./pages/MovieCategory";
+import Search from "./pages/Search";
 
 const router = createBrowserRouter([
   {
@@ -42,6 +43,10 @@ const router = createBrowserRouter([
       {
         path: "signup",
         element: <SignUp />,
+      },
+      {
+        path: "search",
+        element: <Search />,
       },
     ],
   },
