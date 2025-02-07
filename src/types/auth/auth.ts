@@ -19,3 +19,8 @@ export type TTokenValues = {
   refreshToken: string;
   accessToken: string;
 };
+
+export type TUserResponse = {
+  id: number;
+  email: string;
+};

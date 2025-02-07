@@ -12,7 +12,7 @@ import { useAuthStore } from "../../store/useAuthStore";
 
 const useAuth = () => {
   const navigate = useNavigate();
-  const { login: setLoginState } = useAuthStore();
+  const { login: setLoginState, logout: setLogoutState } = useAuthStore();
 
   // ✅ 회원가입 Mutation
   const { mutate: registerUser, isError: isRegisterError } = useMutation<
@@ -52,7 +52,22 @@ const useAuth = () => {
     },
   });
 
-  return { registerUser, isRegisterError, loginUser, isLoginError };
+  // 로그아웃
+  const logoutUser = () => {
+    setLogoutState();
+    localStorage.removeItem("accessToken");
+    localStorage.removeItem("refreshToken");
+    localStorage.removeItem("email");
+    navigate("/login");
+  };
+
+  return {
+    registerUser,
+    isRegisterError,
+    loginUser,
+    isLoginError,
+    logoutUser,
+  };
 };
 
 export default useAuth;

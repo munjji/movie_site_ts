@@ -1,8 +1,10 @@
 import { Link } from "react-router-dom";
 import { useAuthStore } from "../store/useAuthStore";
+import useAuth from "../hooks/auth/useAuth";
 
 const Navbar: React.FC = () => {
   const { isAuthenticated, email } = useAuthStore();
+  const { logoutUser } = useAuth();
 
   return (
     <nav className="p-4 flex flex-row justify-between items-cente">
@@ -12,7 +14,14 @@ const Navbar: React.FC = () => {
       {isAuthenticated ? (
         <div className="flex flex-row gap-3 items-center">
           <div className="text-white">{email}님 반갑습니다!</div>
-          <button className="text-white">로그아웃</button>
+          <button
+            className="text-white"
+            onClick={() => {
+              logoutUser();
+            }}
+          >
+            로그아웃
+          </button>
         </div>
       ) : (
         <div className="flex flex-row gap-1">
