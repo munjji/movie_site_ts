@@ -1,6 +1,6 @@
 import React from "react";
 import Movie from "./Movie";
-import useCustomFetch from "../hooks/useCustomFetch";
+import useCustomFetch from "../../hooks/useCustomFetch";
 
 const Movies: React.FC<{ endpoint?: string }> = ({ endpoint }) => {
   const { movies, isLoading } = useCustomFetch(

@@ -34,7 +34,7 @@ const Search: React.FC = () => {
         onClick={handleSearchMovie}
         onKeyDown={handleSearchMovieWithKeyboard}
       />
-      <SearchMovies searchValue={searchValue} />
+      <SearchMovies />
     </div>
   );
 };

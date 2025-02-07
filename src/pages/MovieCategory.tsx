@@ -1,6 +1,6 @@
 import React from "react";
 import { useParams } from "react-router-dom";
-import Movies from "../components/Movies";
+import Movies from "../components/Movie/Movies";
 import MovieDetail from "./MovieDetail";
 import Category from "../components/Category";
 import { CATEGORY } from "../mocks/category";
