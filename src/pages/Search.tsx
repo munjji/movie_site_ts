@@ -1,7 +1,40 @@
-import React from "react";
+import React, { useState } from "react";
+import SearchBar from "../components/SearchBar";
+import { useNavigate, useSearchParams } from "react-router-dom";
 
 const Search: React.FC = () => {
-  return <div></div>;
+  const [searchValue, setSearchValue] = useState<string>("");
+  const navigate = useNavigate();
+  const onChangeSearchValue = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchValue(event.target.value);
+  };
+  const [searchParams] = useSearchParams({ mq: "" });
+
+  const mq = searchParams.get("mq");
+
+  const handleSearchMovie = () => {
+    if (mq === searchValue) return;
+    navigate(`/search?mq=${searchValue}`);
+  };
+
+  const handleSearchMovieWithKeyboard = (
+    event: React.KeyboardEvent<HTMLInputElement>
+  ) => {
+    if (event.key === "Enter") {
+      handleSearchMovie();
+    }
+  };
+
+  return (
+    <div className="w-full flex pt-5 px-5">
+      <SearchBar
+        searchValue={searchValue}
+        onChange={onChangeSearchValue}
+        onClick={handleSearchMovie}
+        onKeyDown={handleSearchMovieWithKeyboard}
+      />
+    </div>
+  );
 };
 
 export default Search;

@@ -7,7 +7,7 @@ const Navbar: React.FC = () => {
   const { logoutUser } = useAuth();
 
   return (
-    <nav className="p-4 flex flex-row justify-between items-cente">
+    <nav className="p-4 flex flex-row justify-between items-center bg-zinc-900">
       <Link to="/">
         <p className="text-red-500 font-bold text-lg">MUNJJI</p>
       </Link>
@@ -28,7 +28,7 @@ const Navbar: React.FC = () => {
           <Link to="/login">
             <button
               type="button"
-              className="w-[100px] h-[40px] text-center text-white bg-black rounded-xl"
+              className="w-[100px] h-[40px] text-center text-white rounded-xl"
             >
               로그인
             </button>

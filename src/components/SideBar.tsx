@@ -5,7 +5,7 @@ import { MdMovie } from "react-icons/md";
 
 const SideBar: React.FC = () => {
   return (
-    <div className="w-[300px] h-screen flex flex-col text-white gap-2 pt-5 pl-8 bg-zinc-800">
+    <div className="w-[300px] h-screen flex flex-col text-white gap-2 pt-5 pl-8 bg-zinc-900">
       <Link to="/search">
         <div className="flex flex-row gap-1 h-[30px] items-center">
           <FaSearch />
