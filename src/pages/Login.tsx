@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from "react";
 import useForm from "../hooks/use-form";
 import { validateLogin } from "../utils/validate";
+import useAuth from "../hooks/auth/useAuth";
 
 const Login: React.FC = () => {
   const login = useForm({
     initialValue: { email: "", password: "" },
     validate: validateLogin,
   });
+  const { loginUser } = useAuth();
   const [isValid, setIsValid] = useState(false);
 
   useEffect(() => {
@@ -22,6 +24,8 @@ const Login: React.FC = () => {
     if (isValid) {
       console.log(login.values.email, login.values.password);
     }
+
+    loginUser({ email: login.values.email, password: login.values.password });
   };
 
   return (
