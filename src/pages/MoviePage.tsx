@@ -3,7 +3,7 @@ import Movies from "../components/Movie/Movies";
 
 const MoviePage: React.FC = () => {
   return (
-    <div className="w-[1400px] pb-8">
+    <div className="flex-1 pb-8">
       <Movies endpoint="upcoming" />
     </div>
   );

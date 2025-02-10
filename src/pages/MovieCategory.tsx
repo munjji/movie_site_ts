@@ -17,7 +17,7 @@ const MovieCategory: React.FC = () => {
   if (!category) {
     // 기본 카테고리 목록 렌더링
     return (
-      <div className="flex flex-col">
+      <div className="flex-1 flex-col mt-6">
         <p className="text-white text-3xl font-extrabold mb-5">
           카테고리 페이지
         </p>

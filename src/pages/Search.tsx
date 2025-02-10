@@ -27,7 +27,7 @@ const Search: React.FC = () => {
   };
 
   return (
-    <div className="w-full flex flex-col pt-5 px-5">
+    <div className="flex-1 flex-col pt-5 px-5">
       <SearchBar
         searchValue={searchValue}
         onChange={onChangeSearchValue}
