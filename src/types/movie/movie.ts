@@ -18,3 +18,7 @@ export type TMovieResponse = {
   vote_average: number;
   vote_count: number;
 };
+
+export type TMovieSearchValues = {
+  mq: string | null;
+};

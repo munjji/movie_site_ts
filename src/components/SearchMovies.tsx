@@ -1,22 +1,20 @@
 import React from "react";
 import Movie from "./Movie/Movie";
-import useCustomFetch from "../hooks/movies/useMovie";
 import { useSearchParams } from "react-router-dom";
 import MoviesSkeleton from "./Skeleton/MoviesSkeleton";
-import useMovie from "../hooks/movies/useMovie";
+import useSearchMovie from "../hooks/movies/useSearchMovie";
 
 const SearchMovies: React.FC = () => {
   const [searchParams] = useSearchParams({ mq: "" });
   const mq = searchParams.get("mq");
 
-  const url = `/search/movie?query=${mq}&include_adult=false&language=ko-kr&page=1`;
-  const { movies, isLoading } = useMovie(url);
+  const { movies, isLoading } = useSearchMovie({ mq: mq });
 
   if (isLoading) {
     return <MoviesSkeleton />;
   }
 
-  if (mq && movies.length === 0) {
+  if (mq && movies?.length === 0) {
     return (
       <p className="pt-6 text-white text-3xl font-extrabold">
         {mq}에 해당하는 검색 결과가 없습니다!
