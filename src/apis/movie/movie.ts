@@ -9,17 +9,21 @@ import type {
 
 const getMovieData = async ({
   endpoint,
-}: TMovieValues): Promise<TMovieResponse[]> => {
-  const { data } = await axiosInstance.get(`/movie/${endpoint}?language=ko-kr`);
+  page = 1,
+}: TMovieValues & { page?: number }): Promise<TMovieResponse[]> => {
+  const { data } = await axiosInstance.get(
+    `/movie/${endpoint}?language=ko-kr&page=${page}`
+  );
 
   return data.results;
 };
 
 const searchMovieData = async ({
   mq,
-}: TMovieSearchValues): Promise<TMovieResponse[]> => {
+  page = 1,
+}: TMovieSearchValues & { page?: number }): Promise<TMovieResponse[]> => {
   const { data } = await axiosInstance.get(
-    `/search/movie?query=${mq}&include_adult=false&language=ko-kr&page=1`
+    `/search/movie?query=${mq}&include_adult=false&language=ko-kr&page=${page}`
   );
 
   return data.results;
