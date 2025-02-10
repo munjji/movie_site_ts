@@ -1,14 +1,13 @@
 import React from "react";
 import Movie from "./Movie";
-import useCustomFetch from "../../hooks/useCustomFetch";
+import MoviesSkeleton from "../Skeleton/MoviesSkeleton";
+import useMovie from "../../hooks/movies/useMovie";
 
 const Movies: React.FC<{ endpoint?: string }> = ({ endpoint }) => {
-  const { movies, isLoading } = useCustomFetch(
-    `/movie/${endpoint}?language=ko-kr`
-  );
+  const { movies, isLoading } = useMovie({ endpoint: endpoint || "" });
 
   if (isLoading) {
-    return <div className="text-white">로딩 중입니다..</div>;
+    return <MoviesSkeleton />;
   }
 
   return (

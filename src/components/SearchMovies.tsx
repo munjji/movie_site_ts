@@ -1,15 +1,16 @@
 import React from "react";
 import Movie from "./Movie/Movie";
-import useCustomFetch from "../hooks/useCustomFetch";
+import useCustomFetch from "../hooks/movies/useMovie";
 import { useSearchParams } from "react-router-dom";
 import MoviesSkeleton from "./Skeleton/MoviesSkeleton";
+import useMovie from "../hooks/movies/useMovie";
 
 const SearchMovies: React.FC = () => {
   const [searchParams] = useSearchParams({ mq: "" });
   const mq = searchParams.get("mq");
 
   const url = `/search/movie?query=${mq}&include_adult=false&language=ko-kr&page=1`;
-  const { movies, isLoading } = useCustomFetch(url);
+  const { movies, isLoading } = useMovie(url);
 
   if (isLoading) {
     return <MoviesSkeleton />;
