@@ -1,12 +1,12 @@
 import "./App.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import HomePage from "./pages/HomePage";
 import NotFound from "./pages/NotFound";
 import RootLayout from "./layout/root-layout";
 import Login from "./pages/Login";
 import SignUp from "./pages/SignUp";
 import MovieCategory from "./pages/MovieCategory";
 import Search from "./pages/Search";
+import MoviePage from "./pages/MoviePage";
 
 const router = createBrowserRouter([
   {
@@ -16,7 +16,7 @@ const router = createBrowserRouter([
     children: [
       {
         index: true,
-        element: <HomePage />,
+        element: <MoviePage />,
       },
       {
         path: "movies",

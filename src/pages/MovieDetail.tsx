@@ -37,7 +37,7 @@ const MovieDetail: React.FC<{ movieId: string }> = ({ movieId }) => {
   return (
     <div className="py-5">
       <div
-        className={`flex flex-col justify-between w-[1300px] h-[400px] rounded-lg bg-cover bg-center text-white mb-5 p-5`}
+        className={`flex flex-col justify-between w-[1300px] h-[400px] rounded-lg bg-cover bg-center text-white mb-5 p-5 overflow-auto`}
         style={bgStyle}
       >
         <div>

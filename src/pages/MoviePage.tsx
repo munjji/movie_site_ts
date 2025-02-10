@@ -1,7 +1,7 @@
 import React from "react";
 import Movies from "../components/Movie/Movies";
 
-const HomePage: React.FC = () => {
+const MoviePage: React.FC = () => {
   return (
     <div className="w-[1400px] pb-8">
       <Movies endpoint="upcoming" />
@@ -9,4 +9,4 @@ const HomePage: React.FC = () => {
   );
 };
 
-export default HomePage;
+export default MoviePage;
