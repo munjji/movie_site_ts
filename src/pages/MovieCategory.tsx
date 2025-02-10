@@ -50,7 +50,7 @@ const MovieCategory: React.FC = () => {
 
   // category가 유효하지 않으면 MovieDetail로 처리
   return (
-    <div className="flex flex-col pb-8 w-[1400px]">
+    <div className="flex flex-col pb-8">
       <MovieDetail movieId={category} />
     </div>
   );

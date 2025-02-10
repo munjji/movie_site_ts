@@ -1,12 +1,7 @@
 import React from "react";
+import { TCreditProps } from "../types/movie/movie";
 
-interface CreditProps {
-  img?: string;
-  name: string;
-  role: string;
-}
-
-const Credit: React.FC<CreditProps> = ({ img, name, role }) => {
+const Credit: React.FC<TCreditProps> = ({ img, name, role }) => {
   const defaultImg: string = "https://image.tmdb.org/t/p/original";
 
   const bgStyle = {

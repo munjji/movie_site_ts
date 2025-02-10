@@ -3,6 +3,8 @@ import type {
   TMovieResponse,
   TMovieSearchValues,
   TMovieValues,
+  TMovieCreditValues,
+  TCastMember,
 } from "./../../types/movie/movie";
 
 const getMovieData = async ({
@@ -23,4 +25,14 @@ const searchMovieData = async ({
   return data.results;
 };
 
-export { getMovieData, searchMovieData };
+const getMovieCredits = async ({
+  movieId,
+}: TMovieCreditValues): Promise<TCastMember[]> => {
+  const { data } = await axiosInstance.get(
+    `/movie/${movieId}/credits?language=ko-kr`
+  );
+
+  return data.cast;
+};
+
+export { getMovieData, searchMovieData, getMovieCredits };

@@ -1,6 +1,6 @@
 import React from "react";
 import { useLocation } from "react-router-dom";
-import useCreditsFetch from "../hooks/useCreditsFetch";
+import useCreditsFetch from "../hooks/movies/useCreditsFetch";
 import Credit from "../components/Credit";
 
 interface LocationState {
@@ -13,9 +13,7 @@ interface LocationState {
 }
 
 const MovieDetail: React.FC<{ movieId: string }> = ({ movieId }) => {
-  const { credit, isLoading } = useCreditsFetch(
-    `/movie/${movieId}/credits?language=ko-kr`
-  );
+  const { credits, isLoading } = useCreditsFetch(movieId);
 
   const location = useLocation();
   const {
@@ -35,7 +33,7 @@ const MovieDetail: React.FC<{ movieId: string }> = ({ movieId }) => {
   }
 
   return (
-    <div className="w-[1400px] py-5">
+    <div className="flex flex-col py-5">
       <div
         className={`flex flex-col justify-between h-[400px] gap-2 rounded-lg bg-cover bg-center text-white mb-5 p-5 overflow-auto`}
         style={bgStyle}
@@ -50,7 +48,7 @@ const MovieDetail: React.FC<{ movieId: string }> = ({ movieId }) => {
       <div className="text-3xl font-extrabold">
         <p className="text-white">감독/출연</p>
         <div className="flex flex-row flex-wrap justify gap-14 p-4">
-          {credit.map((credit) => (
+          {credits?.map((credit) => (
             <Credit
               img={credit.profile_path}
               name={credit.name}
